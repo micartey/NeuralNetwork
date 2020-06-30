@@ -2,7 +2,7 @@ package me.clientastisch.network.neural.train;
 
 import lombok.Getter;
 import lombok.SneakyThrows;
-import me.clientastisch.network.compiller.Convertable;
+import me.clientastisch.network.serializer.Convertable;
 
 import java.io.File;
 import java.util.Arrays;

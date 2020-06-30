@@ -1,4 +1,4 @@
-package me.clientastisch.network.compiller;
+package me.clientastisch.network.serializer;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

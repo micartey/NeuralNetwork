@@ -3,7 +3,7 @@ package me.clientastisch.network.neural;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.var;
-import me.clientastisch.network.compiller.Convertable;
+import me.clientastisch.network.serializer.Convertable;
 import me.clientastisch.network.neural.layer.Layer;
 import me.clientastisch.network.neural.layer.Neuron;
 import me.clientastisch.network.neural.functions.FunctionType;
