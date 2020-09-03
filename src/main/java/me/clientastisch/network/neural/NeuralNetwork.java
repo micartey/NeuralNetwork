@@ -1,6 +1,7 @@
 package me.clientastisch.network.neural;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.var;
 import me.clientastisch.network.serializer.Convertable;
@@ -18,20 +19,17 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-@SuppressWarnings("ALL")
+@NoArgsConstructor
 public class NeuralNetwork implements Convertable<NeuralNetwork> {
 
     private int[] layerSize;
     private int networkSize;
-
-    private FunctionType function;
 
     @Getter private CopyOnWriteArrayList<Layer> layers;
 
     public NeuralNetwork(FunctionType function, int... neuronsInLayers) {
         this.networkSize = neuronsInLayers.length;
         this.layerSize = neuronsInLayers;
-        this.function = function;
 
         this.layers = new CopyOnWriteArrayList<>();
 
@@ -39,7 +37,7 @@ public class NeuralNetwork implements Convertable<NeuralNetwork> {
         for (int state : neuronsInLayers) {
             List<Neuron> neurons = new LinkedList<>();
             for(int index = 0; index < state; index++)
-                neurons.add(new Neuron(index));
+                neurons.add(new Neuron(function, index));
 
             layers.add(new Layer(
                     neurons.toArray(new Neuron[state])
@@ -51,9 +49,19 @@ public class NeuralNetwork implements Convertable<NeuralNetwork> {
         randomizeWeights(-2, 2);
     }
 
-    public NeuralNetwork() {
-        this.function = null;
-        this.layers = null;
+    public NeuralNetwork(Layer... layer) {
+        this.networkSize = layer.length;
+
+        this.layerSize = Arrays.stream(layer)
+                .map(Layer::getNeurons)
+                .mapToInt(List::size)
+                .toArray();
+
+        this.layers = new CopyOnWriteArrayList<>(layer);
+
+        /* RANDOMIZE AND SKIP INPUT NEURONS */
+        randomizeBiases(-2, 2);
+        randomizeWeights(-2, 2);
     }
 
     private synchronized void randomizeBiases(double lowerBound, double upperBound) {
@@ -100,7 +108,7 @@ public class NeuralNetwork implements Convertable<NeuralNetwork> {
 
                 sum += lastLayer.get().getNeurons().stream().mapToDouble(prevNeuron -> prevNeuron.getOutput() * neuron.getWeights()[prevNeuron.getIndex()]).sum();
 
-                neuron.setOutput(function.calculate(sum));
+                neuron.setOutput(neuron.getFunction().calculate(sum));
                 neuron.setDerivatOutput(neuron.getOutput() * (1 - neuron.getOutput()));
             });
             lastLayer.set(layer);
@@ -180,15 +188,12 @@ public class NeuralNetwork implements Convertable<NeuralNetwork> {
         File file = new File(name);
         file.createNewFile();
 
-        writeFile(name, toBase64().get());
+        toFile(name);
     }
 
     @SneakyThrows
     public NeuralNetwork load(String name) {
-        File file = new File(name);
-        StringBuilder content = new StringBuilder();
-        readTextFileByLines(file).forEach(content::append);
-        return fromBase64(content.toString()).orElse(null);
+        return fromFile(name).orElse(null);
     }
 
     @Override
