@@ -6,10 +6,9 @@ import me.clientastisch.network.neural.functions.Random;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 
-@SuppressWarnings("ALL")
 public class GeneticNetwork extends NeuralNetwork {
 
-    private AtomicReference<Double> score = new AtomicReference<>(new Double(0));
+    private final AtomicReference<Double> score = new AtomicReference<>(0D);
 
     public GeneticNetwork(FunctionType function, double score, int... neuronsInLayers) {
         super(function, neuronsInLayers);
