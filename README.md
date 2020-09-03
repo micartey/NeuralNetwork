@@ -1,6 +1,6 @@
 # NeuralNetwork
 
-This is a object oriented neural network where each `Layer` has a ${n}$-amount of `Neurons` and each `Neuron` is capable of having it's own activation function. The structure of the `Neurons` and their connections to other `Layers` doesn't sepperate itself from other neural networks where each `Neuron` is connected to each `Neuron` in the next `Layer`
+This is a object oriented neural network where each `Layer` has a n-amount of `Neurons` and each `Neuron` is capable of having it's own activation function. The structure of the `Neurons` and their connections to other `Layers` doesn't sepperate itself from other neural networks where each `Neuron` is connected to each `Neuron` in the next `Layer`
 
 <div
  align="center">
