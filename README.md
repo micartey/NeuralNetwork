@@ -18,7 +18,7 @@ You can either create a neural network with a single activation function for eac
     NeuralNetwork network = new NeuralNetwork(FunctionType.SIGMOID, 2, 3, 1);
 ```
 
-Alternatively, you can create each `Layer` individually which also requires each `Neuron` to be created individually with its index
+Alternatively, you can create each `Layer` individually which also requires each `Neuron` to be created individually with its own index and activation function
 
 ```java
     NeuralNetwork network = new NeuralNetwork(
