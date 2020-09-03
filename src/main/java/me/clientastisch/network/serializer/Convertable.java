@@ -1,5 +1,7 @@
 package me.clientastisch.network.serializer;
 
+import lombok.SneakyThrows;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -35,12 +37,13 @@ public interface Convertable<T extends Convertable> extends Serializable, Clonea
         }
     }
 
-    public default List<String> readTextFileByLines(java.io.File file) throws IOException {
-        List<String> lines = Files.readAllLines(file.toPath(), StandardCharsets.UTF_8);
-        return lines;
+    @SneakyThrows
+    public default void toFile(String filename) {
+        Files.write(Paths.get(filename), toBase64().get().getBytes());
     }
 
-    public default void writeFile(String filename, String text) throws Exception {
-        Files.write(Paths.get(filename), text.getBytes());
+    @SneakyThrows
+    public default Optional<T> fromFile(String filename) {
+        return fromBase64(Files.readAllLines(new File(filename).toPath(), StandardCharsets.UTF_8).stream().map(String::join).findFirst().orElse(null));
     }
 }
