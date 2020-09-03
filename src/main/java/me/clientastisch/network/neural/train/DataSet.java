@@ -26,14 +26,11 @@ public class DataSet implements Convertable<DataSet> {
         File file = new File(name);
         file.createNewFile();
 
-        writeFile(name, toBase64().get());
+        toFile(name);
     }
 
     @SneakyThrows
     public DataSet load(String name) {
-        File file = new File(name);
-        StringBuilder content = new StringBuilder();
-        readTextFileByLines(file).forEach(content::append);
-        return fromBase64(content.toString()).orElse(null);
+        return fromFile(name).orElse(null);
     }
 }
