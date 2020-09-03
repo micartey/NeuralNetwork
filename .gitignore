@@ -1,4 +1,4 @@
-
 .idea/$CACHE_FILE$
 *.xml
 *.iml
+*.class
