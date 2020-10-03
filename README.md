@@ -23,14 +23,14 @@ Alternatively, you can create each `Layer` individually which also requires each
 ```java
     NeuralNetwork network = new NeuralNetwork(
         new Layer(
-            new Neuron(FunctionType.SIGMOID, 0),
-            new Neuron(FunctionType.SIGMOID, 1)
+            new Neuron(FunctionType.SIGMOID),
+            new Neuron(FunctionType.SIGMOID)
         ), new Layer(
-            new Neuron(FunctionType.SIGMOID, 0),
-            new Neuron(FunctionType.SIGMOID, 1),
-            new Neuron(FunctionType.SIGMOID, 2)
+            new Neuron(FunctionType.SIGMOID),
+            new Neuron(FunctionType.SIGMOID),
+            new Neuron(FunctionType.SIGMOID)
         ), new Layer(
-            new Neuron(FunctionType.SIGMOID, 0)
+            new Neuron(FunctionType.SIGMOID)
         )
     );
 ```

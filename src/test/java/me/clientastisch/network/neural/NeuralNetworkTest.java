@@ -20,14 +20,14 @@ class NeuralNetworkTest {
     @Test
     public void createAbstract() {
         NeuralNetwork network = new NeuralNetwork(new Layer(
-                new Neuron(FunctionType.SIGMOID, 0),
-                new Neuron(FunctionType.SIGMOID, 1)
+                new Neuron(FunctionType.SIGMOID),
+                new Neuron(FunctionType.SIGMOID)
         ), new Layer(
-                new Neuron(FunctionType.SIGMOID, 0),
-                new Neuron(FunctionType.SIGMOID, 1),
-                new Neuron(FunctionType.SIGMOID, 2)
+                new Neuron(FunctionType.SIGMOID),
+                new Neuron(FunctionType.SIGMOID),
+                new Neuron(FunctionType.SIGMOID)
         ), new Layer(
-                new Neuron(FunctionType.BINARY, 0)
+                new Neuron(FunctionType.BINARY)
         ));
 
         System.out.println(Arrays.toString(network.calculate(3.1, 11.2)));
@@ -42,7 +42,18 @@ class NeuralNetworkTest {
 
     @Test
     public void trainNetwork() {
-        NeuralNetwork network = new NeuralNetwork(FunctionType.SIGMOID, 2, 3, 1);
+//        NeuralNetwork network = new NeuralNetwork(FunctionType.SIGMOID, 2, 3, 1);
+
+        NeuralNetwork network = new NeuralNetwork(new Layer(
+                new Neuron(FunctionType.SIGMOID),
+                new Neuron(FunctionType.SIGMOID)
+        ), new Layer(
+                new Neuron(FunctionType.SIGMOID),
+                new Neuron(FunctionType.SIGMOID),
+                new Neuron(FunctionType.SIGMOID)
+        ), new Layer(
+                new Neuron(FunctionType.SIGMOID)
+        ));
 
         DataSet dataSet = new DataSet(
                 new DataRow(new double[]{1, 0}, new double[]{1}),
@@ -51,6 +62,10 @@ class NeuralNetworkTest {
                 new DataRow(new double[]{0, 0}, new double[]{0})
         );
 
-        network.train(dataSet, 1000, .03);
+        network.train(dataSet, 10000, .03);
+
+        System.out.println(Arrays.toString(network.calculate(0, 0)));
+        System.out.println(Arrays.toString(network.calculate(1, 0)));
+        System.out.println(Arrays.toString(network.calculate(1, 1)));
     }
 }

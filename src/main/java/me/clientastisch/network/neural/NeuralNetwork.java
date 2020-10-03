@@ -23,21 +23,18 @@ import java.util.concurrent.atomic.AtomicReference;
 public class NeuralNetwork implements Convertable<NeuralNetwork> {
 
     private int[] layerSize;
-    private int networkSize;
 
     @Getter private CopyOnWriteArrayList<Layer> layers;
 
     public NeuralNetwork(FunctionType function, int... neuronsInLayers) {
-        this.networkSize = neuronsInLayers.length;
-        this.layerSize = neuronsInLayers;
-
         this.layers = new CopyOnWriteArrayList<>();
+        this.layerSize = neuronsInLayers;
 
         /* CREATE LAYERS AND FILL WITH NEURONS */
         for (int state : neuronsInLayers) {
             List<Neuron> neurons = new LinkedList<>();
             for(int index = 0; index < state; index++)
-                neurons.add(new Neuron(function, index));
+                neurons.add(new Neuron(function));
 
             layers.add(new Layer(
                     neurons.toArray(new Neuron[state])
@@ -50,8 +47,6 @@ public class NeuralNetwork implements Convertable<NeuralNetwork> {
     }
 
     public NeuralNetwork(Layer... layer) {
-        this.networkSize = layer.length;
-
         this.layerSize = Arrays.stream(layer)
                 .map(Layer::getNeurons)
                 .mapToInt(List::size)
