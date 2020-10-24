@@ -12,13 +12,13 @@ This is a object oriented neural network where each `Layer` has a n-amount of `N
 
 ## Create a neural network
 
-You can either create a neural network with a single activation function for each `Neuron` which also indexes the `Neurons` automatically
+You can create a neural network with a single activation function for each `Neuron` which also indexes the `Neurons` automatically
 
 ```java
     NeuralNetwork network = new NeuralNetwork(FunctionType.SIGMOID, 2, 3, 1);
 ```
 
-Alternatively, you can create each `Layer` individually which also requires each `Neuron` to be created individually with its own index and activation function
+Alternatively, you can create each `Layer` individually which also requires each `Neuron` to be created individually with its own activation function
 
 ```java
     NeuralNetwork network = new NeuralNetwork(
