@@ -1,4 +1,4 @@
-package me.clientastisch.network.neural.functions;
+package me.micartey.neuralnetwork.functions;
 
 import lombok.val;
 

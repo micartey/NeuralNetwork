@@ -1,12 +1,12 @@
-package me.clientastisch.network.neural.layer;
+package me.micartey.neuralnetwork.layer;
 
 import lombok.Data;
-import me.clientastisch.network.neural.functions.FunctionType;
+import me.micartey.neuralnetwork.functions.FunctionType;
 
 import java.io.Serializable;
 
 @Data
-public class Neuron implements Serializable, Cloneable {
+public class Neuron {
 
     private double[] weights;
     private double bias;

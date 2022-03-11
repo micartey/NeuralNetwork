@@ -1,17 +1,19 @@
-package me.clientastisch.network.neural;
+package me.micartey.neuralnetwork;
 
+import com.google.gson.Gson;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.var;
-import me.clientastisch.network.serializer.Convertable;
-import me.clientastisch.network.neural.layer.Layer;
-import me.clientastisch.network.neural.layer.Neuron;
-import me.clientastisch.network.neural.functions.FunctionType;
-import me.clientastisch.network.neural.functions.Random;
-import me.clientastisch.network.neural.train.DataSet;
+import me.micartey.neuralnetwork.layer.Layer;
+import me.micartey.neuralnetwork.layer.Neuron;
+import me.micartey.neuralnetwork.functions.FunctionType;
+import me.micartey.neuralnetwork.functions.Random;
+import me.micartey.neuralnetwork.train.DataSet;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +22,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 @NoArgsConstructor
-public class NeuralNetwork implements Convertable<NeuralNetwork> {
+public class NeuralNetwork {
 
     private int[] layerSize;
 
@@ -176,27 +178,6 @@ public class NeuralNetwork implements Convertable<NeuralNetwork> {
             output[i] = Math.abs(output[i] / dataSet.getRows().size());
 
         return output;
-    }
-
-    @SneakyThrows
-    public void save(String name) {
-        File file = new File(name);
-        file.createNewFile();
-
-        toFile(name);
-    }
-
-    @SneakyThrows
-    public NeuralNetwork load(String name) {
-        return fromFile(name).orElse(null);
-    }
-
-    @Override
-    @SneakyThrows
-    public NeuralNetwork clone() {
-        AtomicReference<NeuralNetwork> network = new AtomicReference<>();
-        toBase64().flatMap(this::fromBase64).ifPresent(network::set);
-        return network.get();
     }
 
 }

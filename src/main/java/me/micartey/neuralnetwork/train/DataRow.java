@@ -1,4 +1,4 @@
-package me.clientastisch.network.neural.train;
+package me.micartey.neuralnetwork.train;
 
 import lombok.Getter;
 

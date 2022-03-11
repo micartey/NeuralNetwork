@@ -1,8 +1,8 @@
-package me.clientastisch.network.neural.train;
+package me.micartey.neuralnetwork.train;
 
 import lombok.Getter;
 import lombok.SneakyThrows;
-import me.clientastisch.network.serializer.Convertable;
+import me.micartey.network.serializer.Convertable;
 
 import java.io.File;
 import java.util.Arrays;

@@ -1,7 +1,7 @@
-package me.clientastisch.network.neural;
+package me.micartey.neuralnetwork;
 
-import me.clientastisch.network.neural.functions.FunctionType;
-import me.clientastisch.network.neural.functions.Random;
+import me.micartey.neuralnetwork.functions.FunctionType;
+import me.micartey.neuralnetwork.functions.Random;
 
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;

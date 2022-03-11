@@ -1,4 +1,4 @@
-package me.clientastisch.network.neural.layer;
+package me.micartey.neuralnetwork.layer;
 
 import lombok.Getter;
 
@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Layer implements Serializable, Cloneable {
+public class Layer {
 
     @Getter private final CopyOnWriteArrayList<Neuron> neurons;
 
