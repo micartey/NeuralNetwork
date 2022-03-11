@@ -53,13 +53,3 @@ file
     /* TRAIN ON THE DATASET FOR 1000 CICLES */
     network.train(dataSet, 1000, .03);
 ```
-
-## Serialize a neural network
-
-<br />
-
-```java
-    NeuralNetwork network = new NeuralNetwork(FunctionType.SIGMOID, 2, 3, 1);
-    network.save("Network");
-    NeuralNetwork other = new NeuralNetwork().load("Network");
-```
