@@ -8,17 +8,17 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-@SuppressWarnings("ALL")
 public class DataSet implements Convertable<DataSet> {
 
-    @Getter private CopyOnWriteArrayList<DataRow> rows = new CopyOnWriteArrayList<>();
+    @Getter private final CopyOnWriteArrayList<DataRow> rows;
 
     public DataSet(DataRow... rows) {
-        addRow(rows);
+        this.rows = new CopyOnWriteArrayList<>();
+        this.addRow(rows);
     }
 
     public void addRow(DataRow... rows) {
-        Arrays.stream(rows).forEach(this.rows::add);
+        this.rows.addAll(Arrays.asList(rows));
     }
 
     @SneakyThrows

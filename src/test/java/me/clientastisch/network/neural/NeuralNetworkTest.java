@@ -5,6 +5,7 @@ import me.clientastisch.network.neural.layer.Layer;
 import me.clientastisch.network.neural.layer.Neuron;
 import me.clientastisch.network.neural.train.DataRow;
 import me.clientastisch.network.neural.train.DataSet;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -66,6 +67,12 @@ class NeuralNetworkTest {
 
         System.out.println(Arrays.toString(network.calculate(0, 0)));
         System.out.println(Arrays.toString(network.calculate(1, 0)));
+        System.out.println(Arrays.toString(network.calculate(0, 1)));
         System.out.println(Arrays.toString(network.calculate(1, 1)));
+
+        Assertions.assertTrue(network.calculate(0, 0)[0] < .1);
+        Assertions.assertTrue(network.calculate(1, 0)[0] > .9);
+        Assertions.assertTrue(network.calculate(0, 1)[0] > .9);
+        Assertions.assertTrue(network.calculate(1, 1)[0] > .9);
     }
 }

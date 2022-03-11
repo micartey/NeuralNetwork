@@ -91,14 +91,14 @@ public class NeuralNetwork implements Convertable<NeuralNetwork> {
 
     public synchronized double[] calculate(double... input) {
         if(input.length != layers.get(0).getNeurons().size())
-            throw new IllegalArgumentException("Inpute vector must be equal to network input size.");
+            throw new IllegalArgumentException("Input vector must be equal to network input size.");
 
         fill(0, input);
 
         AtomicReference<Layer> lastLayer = new AtomicReference<>(layers.get(0));
 
         layers.stream().skip(1).forEach(layer -> {
-            layer.getNeurons().stream().forEach(neuron -> {
+            layer.getNeurons().forEach(neuron -> {
                 var sum = neuron.getBias();
 
                 sum += lastLayer.get().getNeurons().stream().mapToDouble(prevNeuron -> prevNeuron.getOutput() * neuron.getWeights()[prevNeuron.getIndex()]).sum();
@@ -109,18 +109,18 @@ public class NeuralNetwork implements Convertable<NeuralNetwork> {
             lastLayer.set(layer);
         });
 
-        return layers.get(layers.size() - 1).getNeurons().stream().mapToDouble(neuron -> neuron.getOutput()).toArray();
+        return layers.get(layers.size() - 1).getNeurons().stream().mapToDouble(Neuron::getOutput).toArray();
     }
 
     private synchronized void updateWeights(double eta) {
         AtomicReference<Layer> lastLayer = new AtomicReference<>(layers.get(0));
 
         layers.stream().skip(1).forEach(layer -> {
-            layer.getNeurons().stream().forEach(neuron -> {
+            layer.getNeurons().forEach(neuron -> {
                 var delta = -eta * neuron.getError();
                 neuron.setBias(neuron.getBias() + delta);
 
-                lastLayer.get().getNeurons().stream().forEach(prevNeuron -> {
+                lastLayer.get().getNeurons().forEach(prevNeuron -> {
                     neuron.getWeights()[prevNeuron.getIndex()] += delta * prevNeuron.getOutput();
                 });
             });
@@ -163,19 +163,19 @@ public class NeuralNetwork implements Convertable<NeuralNetwork> {
     }
 
     public synchronized double[] getError(DataSet dataSet) {
-        double[] ouput = new double[layers.get(layers.size() - 1).getNeurons().size()];
+        double[] output = new double[layers.get(layers.size() - 1).getNeurons().size()];
 
         dataSet.getRows().forEach(dataRow -> {
             AtomicInteger count = new AtomicInteger();
             Arrays.stream(calculate(dataRow.getInput())).forEach(guess ->
-                    ouput[count.get()] += dataRow.getDestination()[count.getAndIncrement()] - guess
+                    output[count.get()] += dataRow.getDestination()[count.getAndIncrement()] - guess
             );
         });
 
-        for(int i = 0; i < ouput.length; i++)
-            ouput[i] = Math.abs(ouput[i] / dataSet.getRows().size());
+        for(int i = 0; i < output.length; i++)
+            output[i] = Math.abs(output[i] / dataSet.getRows().size());
 
-        return ouput;
+        return output;
     }
 
     @SneakyThrows
@@ -194,7 +194,9 @@ public class NeuralNetwork implements Convertable<NeuralNetwork> {
     @Override
     @SneakyThrows
     public NeuralNetwork clone() {
-        return (NeuralNetwork) super.clone();
+        AtomicReference<NeuralNetwork> network = new AtomicReference<>();
+        toBase64().flatMap(this::fromBase64).ifPresent(network::set);
+        return network.get();
     }
 
 }
