@@ -3,8 +3,6 @@ package me.micartey.neuralnetwork.layer;
 import lombok.Data;
 import me.micartey.neuralnetwork.functions.FunctionType;
 
-import java.io.Serializable;
-
 @Data
 public class Neuron {
 

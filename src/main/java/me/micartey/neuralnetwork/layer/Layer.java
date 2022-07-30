@@ -2,7 +2,6 @@ package me.micartey.neuralnetwork.layer;
 
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.concurrent.CopyOnWriteArrayList;
 

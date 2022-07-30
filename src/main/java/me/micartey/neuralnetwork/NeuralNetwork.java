@@ -1,19 +1,14 @@
 package me.micartey.neuralnetwork;
 
-import com.google.gson.Gson;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.var;
-import me.micartey.neuralnetwork.layer.Layer;
-import me.micartey.neuralnetwork.layer.Neuron;
 import me.micartey.neuralnetwork.functions.FunctionType;
 import me.micartey.neuralnetwork.functions.Random;
+import me.micartey.neuralnetwork.layer.Layer;
+import me.micartey.neuralnetwork.layer.Neuron;
 import me.micartey.neuralnetwork.train.DataSet;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;

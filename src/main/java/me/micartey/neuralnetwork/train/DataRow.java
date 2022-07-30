@@ -2,9 +2,7 @@ package me.micartey.neuralnetwork.train;
 
 import lombok.Getter;
 
-import java.io.Serializable;
-
-public class DataRow implements Serializable {
+public class DataRow {
 
     @Getter private final double[] input;
     @Getter private final double[] destination;

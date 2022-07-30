@@ -36,8 +36,6 @@ class NeuralNetworkTest {
 
     @Test
     public void trainNetwork() {
-//        NeuralNetwork network = new NeuralNetwork(FunctionType.SIGMOID, 2, 3, 1);
-
         NeuralNetwork network = new NeuralNetwork(new Layer(
                 new Neuron(FunctionType.SIGMOID),
                 new Neuron(FunctionType.SIGMOID)

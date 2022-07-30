@@ -1,16 +1,39 @@
 # NeuralNetwork
 
+<div align="center">
+  <a href="https://www.oracle.com/java/" target="_blank">
+    <img
+      src="https://img.shields.io/badge/Written%20in-java-%23EF4041?style=for-the-badge"
+      height="30"
+    />
+  </a>
+  <a href="https://github.com/Clientastisch/viro/actions/workflows/maven-publish.yml" target="_blank">
+    <img
+      src="https://img.shields.io/badge/actions-build-%27a147?style=for-the-badge"
+      height="30"
+    />
+  </a>
+</div>
+
+<br />
+
+<p align="center">
+  <a href="#-introduction">Introduction</a> |
+  <a href="#-create-a-neural-network">Getting started</a>
+</p>
+
+## 📚 Introduction
+
 This is a object oriented neural network where each `Layer` has a n-amount of `Neurons` and each `Neuron` is capable of having it's own activation function. The structure of the `Neurons` and their connections to other `Layers` doesn't sepperate itself from other neural networks where each `Neuron` is connected to each `Neuron` in the next `Layer`
 
-<div
- align="center">
+<div align="center">
     <img
       height="200px"
       src="images/Network.png"
     />
 </div>
 
-## Create a neural network
+## 🧱 Create a neural network
 
 You can create a neural network with a single activation function for each `Neuron` which also indexes the `Neurons` automatically
 
@@ -35,10 +58,9 @@ Alternatively, you can create each `Layer` individually which also requires each
     );
 ```
 
-## Train a neural network
+## 🏋🏽‍♂️ Training a neural network
 
-To train your neural network you can use either `DataSets` or normal `double` arrays. The advantage of `DataSets` is that they can be saved and loaded from
-file
+To train your neural network you can use either `DataSets` or normal `double` arrays. The following example trains the OR-Gate to a neural network.
 
 ```java
     NeuralNetwork network = new NeuralNetwork(FunctionType.SIGMOID, 2, 3, 1);
