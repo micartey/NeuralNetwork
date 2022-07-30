@@ -28,10 +28,10 @@ jobs:
     - name: Prepare artifact
       run: |
         mkdir bin
-        cp ./target/neuralnetwork-1.0.jar ./bin/neuralnetwork.jar
+        cp ./target ./bin
 
     - name: Upload java release
       uses: actions/upload-artifact@v2
       with:
-        name: viro
-        path: ./bin/neuralnetwork.jar
+        name: NeuralNetwork.zip
+        path: ./bin
