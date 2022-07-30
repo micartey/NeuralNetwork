@@ -27,6 +27,7 @@ jobs:
 
     - name: Prepare artifact
       run: |
+        mkdir bin
         cp ./target/neuralnetwork-1.0.jar ./bin/neuralnetwork.jar
 
     - name: Upload java release
