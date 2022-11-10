@@ -18,8 +18,9 @@
 <br />
 
 <p align="center">
-  <a href="#-introduction">Introduction</a> |
-  <a href="#-create-a-neural-network">Getting started</a>
+  <a href="#-introduction">Introduction</a> •
+  <a href="#-create-a-neural-network">Getting started</a> •
+  <a href="https://github.com/micartey/NeuralNetwork/issues">Troubleshooting</a>
 </p>
 
 ## 📚 Introduction
