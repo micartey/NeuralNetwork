@@ -36,7 +36,7 @@ public class GeneticNetwork extends NeuralNetwork {
         return score.get();
     }
 
-    public void judge(double value) {
+    public void reward(double value) {
         score.set(score.get() + value);
     }
 }
